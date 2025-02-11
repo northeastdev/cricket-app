@@ -13,12 +13,15 @@ const CricketGround = () => {
   const radius = 300;
 
   const positions = [
-    { name: "Third Man", color: "#000000", startAngle: 0, endAngle: 90 },
-    { name: "Fine Leg", color: "#000000", startAngle: 90, endAngle: 180 },
-    { name: "Square Leg", color: "#000000", startAngle: 180, endAngle: 220 },
-    { name: "Long On", color: "#000000", startAngle: 220, endAngle: 270 },
-    { name: "Long Off", color: "#000000", startAngle: 270, endAngle: 320 },
-    { name: "Cover", color: "#000000", startAngle: 320, endAngle: 360 },
+    { name: "Point", color: "#000000", startAngle: -3, endAngle: 35 },
+    { name: "Third Man", color: "#000000", startAngle: 35, endAngle: 90 },
+    { name: "Fine Leg", color: "#000000", startAngle: 90, endAngle: 145 },
+    { name: "Square Leg", color: "#000000", startAngle: 145, endAngle: 185 },
+    { name: "Mid Wicket", color: "#000000", startAngle: 185, endAngle: 225 },
+    { name: "Long On", color: "#000000", startAngle: 225, endAngle: 270 },
+    { name: "Long Off", color: "#000000", startAngle: 270, endAngle: 315 },
+    { name: "Cover", color: "#000000", startAngle: 315, endAngle: 357 },
+
   ];
 
   const drawWedge = (context: Konva.Context, shape: Konva.Shape, position: typeof positions[0]) => {
@@ -47,11 +50,10 @@ const CricketGround = () => {
               fill={`${pos.color}${hoveredPosition === pos.name ? '40' : '10'}`} // Opacity change on hover
             //   fill={`${pos.color}60`}
               stroke="#fff"
-              dash={[6, 6]}
+              dash={[7, 3]}
               strokeWidth={1}
               onClick={() => {
                 setSelectedPosition(pos.name);
-                console.log("Selected:", pos.name);
               }}
               onMouseEnter={() => setHoveredPosition(pos.name)}
               onMouseLeave={() => setHoveredPosition(null)}
@@ -60,15 +62,15 @@ const CricketGround = () => {
           ))}
 
           {/* Pitch with Proper End Markings */}
-          <Rect x={450} y={200} width={100} height={300} fill="#e6d4ae" />
+          <Rect x={470} y={255} width={60} height={190} fill="#cfb088" />
           
           {/* Bowler End (Top) */}
-          <Line points={[450, 230, 550, 230]} stroke="#fff" strokeWidth={2} />
-          <Text x={460} y={180} text="Bowler End" fontSize={14} fill="#fff" />
+          <Line points={[459, 255, 540, 255]} stroke="#fff" strokeWidth={2} />
+          <Text x={460} y={220} text="Bowlers End" fontSize={14} fill="#212120" />
 
           {/* Batter End (Bottom) */}
-          <Line points={[450, 470, 550, 470]} stroke="#fff" strokeWidth={2} />
-          <Text x={460} y={520} text="Batter End" fontSize={14} fill="#fff" />
+          <Line points={[459, 446, 540, 446]} stroke="#fff" strokeWidth={2} />
+          <Text x={460} y={465} text="Batters End" fontSize={15} fill="#212120" />
 
           {/* Crease Markings */}
           {/* <Line points={[495, 200, 495, 220]} stroke="#fff" strokeWidth={2} />
@@ -77,11 +79,22 @@ const CricketGround = () => {
           <Line points={[545, 500, 545, 480]} stroke="#fff" strokeWidth={2} /> */}
 
           {/* Orientation Labels */}
-          <Text x={650} y={centerY} text="Off Side" fontSize={16} fill="#fff" />
-          <Text x={350} y={centerY} text="On Side" fontSize={16} fill="#fff" />
+          <Text x={650} y={centerY} text="OFF SIDE" opacity={0.7} fontSize={14} fill="#fff" />
+          <Text x={350} y={centerY} text="ON SIDE" opacity={0.7} fontSize={14} fill="#fff" />
 
           {/* Batsman Representation */}
-          <Rect x={490} y={475} width={20} height={30} fill="#2c3e50" />
+          <Rect x={492} y={435} width={15} height={20} fill="#2c3e50" />
+          {/* Bowler Representation */}
+          <Line
+            points={[500, 245, 500, 265]}
+            stroke="#2c3e50"
+            strokeWidth={4}
+            lineCap="round"
+            lineJoin="round"
+            pointerLength={10}
+            pointerWidth={10}
+            pointerAtBeginning={true}
+          />
 
           {/* Position Labels */}
           {positions.map((pos) => (
