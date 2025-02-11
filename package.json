@@ -9,11 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "konva": "^9.3.18",
-    "next": "15.1.5",
+    "next": "^15.1.7",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-konva": "^19.0.2"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
